@@ -21,7 +21,7 @@ const CTA = () => {
 
                     <div className="mt-6">
                         <div className="inline-flex w-full overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3">
-                            <a href="#" className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto">
+                            <a href="https://github.com/anjumann/student-dbms" target="_blank" className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto">
 
                                 <span className="mx-2 capitalize ">
                                     <FaCodeBranch className='inline text-xl heading-shadow mr-2 ' />
@@ -31,7 +31,7 @@ const CTA = () => {
                         </div>
 
                         <div className="inline-flex w-full mt-4 overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3 sm:mt-0">
-                            <a href="#" className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white transition-colors duration-150 transform sm:w-auto bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-600">
+                            <a href="https://github.com/anjumann/student-dbms" target="_blank" className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white transition-colors duration-150 transform sm:w-auto bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-600">
 
                                 <span className="mx-2 capitalize">
                                     <AiOutlineStar className='inline text-xl heading-shadow mr-2 ' />
