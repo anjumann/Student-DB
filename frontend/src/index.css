@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Signika+Negative:wght@600&display=swap");
+
+.font-jetbrains {
+  font-family: "JetBrains Mono", monospace;
+}
+.font-signika {
+  font-family: "Signika Negative", sans-serif;
+}
+
+/* .bg-login {
+  background-image: url("images/loginBG.jpg");
+  background-image: url("/public/images/");
+} */
+/* 
+.bg-profile {
+  background-image: url("https://source.unsplash.com/1L71sPT5XKc");
+}
+.profile {
+  background-image: url("https://source.unsplash.com/MP0IUfwrn0A");
+} */
+
+.navbarbg {
+  background: rgba(71, 71, 71, 0);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15.5px);
+  -webkit-backdrop-filter: blur(15.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.bg-light {
+  /* background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% ); */
+  /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  /* background-image: linear-gradient(to right, #434343 0%, black 100%); */
+  /* background-image: url("https://source.unsplash.com/1L71sPT5XKc"); */
+  /* background-image: url("/background.jpg"); */
+  background-image: url("/public/images/background1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+}
+
+
+.bg-update-modal {
+  /* background-image: url("/login.jpg"); */
+  background-image: url("/public/images/login.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.heading-shadow {
+  text-shadow: rgb(255 215 77 / 60%) -1px -1px 6px,
+    rgb(124 127 255 / 60%) 1px 1px 6px;
+}
+.box-shadow:hover {
+  box-shadow: rgb(255 215 77 / 60%) -1px -1px 16px,
+    rgb(124 127 255 / 60%) 1px 1px 16px;
+}
