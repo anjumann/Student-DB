@@ -7,8 +7,7 @@ import { useRecoilState } from 'recoil';
 import { MdOutlineAlternateEmail } from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { IKImage, IKContext } from 'imagekitio-react';
-import { redirect } from 'react-router-dom'
+import { BsPlusSquare } from 'react-icons/bs'
 import PostCreateModal from '../Components/members/PostCreateModal'
 import ProfilePic from '../profilepic.png'
 
@@ -36,14 +35,14 @@ const Profile = () => {
       setStudentData(data);
     })
   }
-  
-  
+
+
   useEffect(() => {
     fetchInfo()
   }, [])
-  
-  
-  
+
+
+
   useEffect(() => {
     const handleEscapePress = (e) => {
       if (e.key === "Escape") {
@@ -51,11 +50,11 @@ const Profile = () => {
       }
     };
     window.addEventListener("keydown", handleEscapePress);
-    
+
     return () => window.removeEventListener("keydown", handleEscapePress);
   }, []);
 
-  
+
   const profilePic = studentData.image || "https://images.unsplash.com/photo-1608889175123-8ee362201f81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
 
 
@@ -104,14 +103,19 @@ const Profile = () => {
               <p className="pt-8 text-sm text-white "></p>
 
               <div className="pt-12 pb-8">
-                <button className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-3xl mr-2">
-                  Old Posts
-                </button>
+                
                 {(id.toLowerCase() === authsesstion.usn) ? (<>
 
-                  <button onClick={() => { setOpenPostModal(true) }} className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-3xl ml-2 ">
-                    Create New Post
-                  </button>
+                  <div onClick={() => { setOpenPostModal(true) }} className="inline-flex w-full overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3">
+                    <div className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto">
+
+                      <span className="mx-2 capitalize ">
+                        Create Post 
+                        <BsPlusSquare className='inline  ml-2' />
+                      </span>
+                    </div>
+                  </div>
+
                 </>) : ''}
               </div>
 
