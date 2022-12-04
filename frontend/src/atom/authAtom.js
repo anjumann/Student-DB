@@ -4,7 +4,7 @@ import {
 
 export const sessionAuth = atom({
     key: 'authState',
-    default:''
+    default:null
 
 });
 
