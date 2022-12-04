@@ -20,21 +20,23 @@ const Navbar = () => {
     }
 
     const fetchUser = async () => {
+        if (uid) {
 
-        await axios.request({
-            url: `${apiUrl}/user/uid/${uid}`,
-            method: "GET",
-            headers: {
-                "Accept": "*/*",
-                "Content-Type": "application/json",
-            },
-        }).then((res) => {
-            const { data } = res
-            setAuthSession(data)
-            console.log("Auth" + authsesstion);
-        }).catch((error) => {
-            console.log(error);
-        });
+            await axios.request({
+                url: `${apiUrl}/user/uid/${uid}`,
+                method: "GET",
+                headers: {
+                    "Accept": "*/*",
+                    "Content-Type": "application/json",
+                },
+            }).then((res) => {
+                const { data } = res
+                setAuthSession(data)
+                console.log("Auth" + authsesstion);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
 
     }
 
@@ -55,9 +57,9 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className=" z-50  dropdown-content mt-3 p-2 shadow  rounded-box w-52 gap-y-5 backdrop-blur-3xl backdrop-brightness-50">
                             <Link to='/members'><li>Members</li></Link>
-                            {authsesstion !== "User not found" ? (
+                            {authsesstion ? (
                                 <>
-                                    <Link to={`/members/${authsesstion?.usn}`} ><li>Profile</li></Link>
+                                    <Link to={`/members/${authsesstion.usn}`} ><li>Profile</li></Link>
 
                                 </>
                             ) : (
@@ -75,9 +77,9 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className=" flex gap-8 cursor-pointer p-0">
                         <Link to='/members'><li>Members</li></Link>
-                        {authsesstion !== "User not found" ? (
+                        {authsesstion ? (
                             <>
-                                <Link to={`/members/${authsesstion?.usn}`}><li>Profile</li></Link>
+                                <Link to={`/members/${authsesstion.usn}`}><li>Profile</li></Link>
                             </>
                         ) : (
                             <>
@@ -92,7 +94,7 @@ const Navbar = () => {
                     </ul >
                 </div >
                 <div className="navbar-end">
-                    {authsesstion !== "User not found" ? (
+                    {authsesstion ? (
                         <button onClick={logout} className="btn glass">Logout</button>
                     ) : (
                         <Link to='/login' >
