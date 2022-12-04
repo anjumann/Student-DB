@@ -57,7 +57,7 @@ const Navbar = () => {
                             <Link to='/members'><li>Members</li></Link>
                             {authsesstion !== "User not found" ? (
                                 <>
-                                    <Link to={`/members/${authsesstion.usn}`} ><li>Profile</li></Link>
+                                    <Link to={`/members/${authsesstion?.usn}`} ><li>Profile</li></Link>
 
                                 </>
                             ) : (
@@ -77,7 +77,7 @@ const Navbar = () => {
                         <Link to='/members'><li>Members</li></Link>
                         {authsesstion !== "User not found" ? (
                             <>
-                                <Link to={`/members/${authsesstion.usn}`}><li>Profile</li></Link>
+                                <Link to={`/members/${authsesstion?.usn}`}><li>Profile</li></Link>
                             </>
                         ) : (
                             <>
