@@ -74,7 +74,7 @@ const Profile = () => {
 
               <span onClick={() => setOpenModal(true)} className='cursor-pointer' >
                 {
-                  (id.toLowerCase() === authsesstion.usn) ? <span className="border-red-600 border px-2 py-1 text-red-600 rounded-sm ml-3 ">Edit </span> : ''
+                  (id.toLowerCase() === authsesstion?.usn) ? <span className="border-red-600 border px-2 py-1 text-red-600 rounded-sm ml-3 ">Edit </span> : ''
                 }
               </span>
 
@@ -104,7 +104,7 @@ const Profile = () => {
 
               <div className="pt-12 pb-8">
                 
-                {(id.toLowerCase() === authsesstion.usn) ? (<>
+                {(id.toLowerCase() === authsesstion?.usn) ? (<>
 
                   <div onClick={() => { setOpenPostModal(true) }} className="inline-flex w-full overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3">
                     <div className="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto">
