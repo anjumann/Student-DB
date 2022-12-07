@@ -14,7 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     // const apiUrl = process.env.REACT_APP_API_URL
     const apiUrl = process.env.REACT_APP_API_URL
-  
+    
   
 
     const navigate = useNavigate();
@@ -46,7 +46,7 @@ const Login = () => {
                 localStorage.setItem('uid', JSON.stringify(data.uuid));
                 alert("Login Successfull")
                 console.log("Auth session" +authsesstion);
-                authsesstion && navigate(`/members/${data.usn}`)
+                navigate(`/`)
                 
                 
             }

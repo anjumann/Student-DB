@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom";
+import ModalDefault from '../Components/ModalDefault';
 
 const Register = () => {
 
@@ -22,8 +23,11 @@ const Register = () => {
     const [loading, setLoading] = useState(false)
     const [otp, setOtp] = useState('')
     const apiUrl = process.env.REACT_APP_API_URL
-
-
+    const [isTeacher, setIsTeacher] = useState(false)
+    const [openModalOTP, setOpenModalOTP] = useState(false)
+    const [ModalMessage, setModalMessage] = useState('')
+    const [ModalHead, setModalHead] = useState('')
+   
 
 
     const sendOtp = async () => {
@@ -45,7 +49,10 @@ const Register = () => {
             console.log(res.data)
             if (res.status === 200) {
                 // alert('OTP sent to your email id')
-                alert(res.data)
+                setModalHead('OTP sent')
+                setModalMessage ('OTP sent to your email id')
+                setOpenModalOTP(true)
+
                 if (res.data !== 'User already verified') {
                     setForm(1)
                 }
@@ -96,7 +103,7 @@ const Register = () => {
             "section": section,
             "usn": usn,
             "password": password,
-
+            "isTeacher": isTeacher
         });
 
         await axios.request({
@@ -196,7 +203,7 @@ const Register = () => {
                             />
                         </div>
                             <div className="mt-4 w-full   ">
-                                <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >USN</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >USN / E-ID </label>
                                 <input className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 " type="text"
                                     onChange={(e) => { setUsn(e.target.value) }}
                                     value={usn}
@@ -230,6 +237,7 @@ const Register = () => {
                                 </button>
                             </div></>) : (form === 1 ? (
                                 <>
+
                                     <div className="mt-4 w-full   ">
                                         <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Enter the OTP</label>
                                         <input className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 " type="text"
@@ -248,47 +256,43 @@ const Register = () => {
                                 </>
                             ) : (form === 2 ? (
                                 <>
-                                    <div className="mt-4 w-full   ">
-                                        <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Branch </label>
-                                        <select className="select select-ghost w-full text-white mx-auto backdrop-blur-sm"
-                                            onChange={(e) => setBranch(e.target.value)}
-                                            value={branch}
-                                        >
-                                            <option value={"ALL"} defaultValue>Branch</option>
-                                            <option value={"ISE"} >ISE</option>
-                                            <option value={"AIML"} >AIML</option>
-                                            <option value={"CSE"} >CSE</option>
-                                            <option value={"ECE"} >ECE</option>
-                                        </select>
-                                    </div>
+
                                     <div className="flex flex-row justify-between">
 
-                                        <div className="mt-4 w-[45%]   ">
-                                            <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Semester</label>
-                                            <select className="select select-ghost w-full text-white mx-auto backdrop-blur-sm"
-                                                onChange={(e) => setSemester(e.target.value)}
-                                                value={semester}
-                                            >
-                                                <option defaultValue>Semster</option>
-                                                <option value={"1st"} >1st</option>
-                                                <option value={"3rd"} >3rd</option>
-                                                <option value={"5th"} >5th</option>
-                                                <option value={"7th"} >7th</option>
-                                            </select>
-                                        </div>
-                                        <div className="mt-4 w-[45%]   ">
-                                            <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Section</label>
-                                            <select className="select select-ghost w-full text-white mx-auto backdrop-blur-sm"
-                                                onChange={(e) => setSection(e.target.value)}
-                                                value={section}
-                                            >
-                                                <option defaultValue>Section</option>
-                                                <option value={"A"} >A</option>
-                                                <option value={"B"} >B</option>
-                                                <option value={"C"} >C</option>
-                                                <option value={"D"} >D</option>
-                                            </select>
-                                        </div>
+                                        {isTeacher !== true ? (
+                                            <>
+                                                <div className="mt-4 w-[45%]   ">
+                                                    <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Semester</label>
+                                                    <select className="select select-ghost w-full text-white mx-auto backdrop-blur-sm"
+                                                        onChange={(e) => setSemester(e.target.value)}
+                                                        value={semester}
+                                                    >
+                                                        <option defaultValue>Semster</option>
+                                                        <option value={"1st"} >1st</option>
+                                                        <option value={"3rd"} >3rd</option>
+                                                        <option value={"5th"} >5th</option>
+                                                        <option value={"7th"} >7th</option>
+                                                    </select>
+                                                </div>
+
+                                                <div className="mt-4 w-[45%]   ">
+                                                    <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Section</label>
+                                                    <select className="select select-ghost w-full text-white mx-auto backdrop-blur-sm"
+                                                        onChange={(e) => setSection(e.target.value)}
+                                                        value={section}
+                                                    >
+                                                        <option defaultValue>Section</option>
+                                                        <option value={"A"} >A</option>
+                                                        <option value={"B"} >B</option>
+                                                        <option value={"C"} >C</option>
+                                                        <option value={"D"} >D</option>
+                                                    </select>
+                                                </div>
+                                            </>
+
+                                        ) : null}
+
+
                                     </div>
                                     <div className="mt-4 w-full   ">
                                         <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200 heading-shadow" >Password </label>
@@ -322,6 +326,11 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+            {openModalOTP?<ModalDefault head='OTP SEND' message='Check Inbox for OTP ' {...{ openModalOTP, setOpenModalOTP }} />: '' }
+            {openModalOTP?<ModalDefault head='OTP Verified' message='Verified' {...{ openModalOTP, setOpenModalOTP }} />: '' }
+            
+
+
         </>
     )
 }

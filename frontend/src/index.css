@@ -53,6 +53,14 @@
   background-attachment: fixed;
 }
 
+.bg-default-modal {
+  /* background-image: url("/login.jpg"); */
+  background-image: url("/public/images/modalBG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .heading-shadow {
   text-shadow: rgb(255 215 77 / 60%) -1px -1px 6px,
     rgb(124 127 255 / 60%) 1px 1px 6px;

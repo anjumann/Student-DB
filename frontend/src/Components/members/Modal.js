@@ -1,51 +1,24 @@
 import React, { useState, useRef } from 'react'
 import axios from "axios";
-import { IKUpload } from 'imagekitio-react';
+// import { IKUpload } from 'imagekitio-react';
 const apiUrl = process.env.REACT_APP_API_URL
 
 const Modal = ({ openModal, setOpenModal, usn }) => {
 
-    const inputRefTest = useRef(null);
+    const [uploadLoading, setUploadLoading] = useState(false)
 
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState(null)
+    const [image, setImage] = useState(null)
 
     const [updateData, setUpdateData] = useState({
         instgram: '',
         linkedin: '',
         github: ''
     })
-
-
-    const onError = err => {
-        console.log("Error", err);
-    };
-
-    const onSuccess = res => {
-        console.log("Success", res);
-        setImageUrl(res.url)
-    };
-
-    const onUploadProgress = (progress) => {
-        console.log("Progress", progress);
-    };
-
-    const onUploadStart = (evt) => {
-        console.log("Start", evt);
-    };
-    const handleChange = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-        setUpdateData({ ...updateData, [name]: value })
-    }
-    console.log(updateData);
-
     const handleSubmit = async () => {
         let bodyContent = await JSON.stringify({
-
-            "instgram": updateData.instgram,
-            "linkedin": updateData.linkedin,
-            "github": updateData.github,
             "image": imageUrl
+
         });
 
 
@@ -68,6 +41,38 @@ const Modal = ({ openModal, setOpenModal, usn }) => {
 
     }
 
+    const handleImageUpload = async (e) => {
+        setUploadLoading(true)
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'studentDB');
+
+        await axios.request({
+            url: "https://api.cloudinary.com/v1_1/diimlpff5/image/upload",
+            method: "POST",
+            headers: {
+                "Accept": "*/*",
+                "Content-Type": "application/json"
+            },
+            data: data,
+        }).then((res) => {
+            console.log(res);
+            setImageUrl(res.data.secure_url)
+            handleSubmit()
+        }).catch((e) => {
+            console.log(e);
+        })
+        setUploadLoading(false)
+    }
+
+    const handleChange = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        setUpdateData({ ...updateData, [name]: value })
+    }
+    console.log(updateData);
+
+
 
     return (
         <>
@@ -82,23 +87,16 @@ const Modal = ({ openModal, setOpenModal, usn }) => {
                             <label className=' ' > Profile Picture: </label>
 
                             <div className='flex ' >
-                                <IKUpload
-                                    fileName={`${usn}.png`}
-                                    authenticationEndpoint={`${apiUrl}/imageauth`}
-                                    className="file-input file-input-ghost w-full max-w-xs"
-                                    onSuccess={onSuccess}
-                                    onError={onError}
-                                    folder='/StudentDB/users'
-                                    inputRef={inputRefTest}
-                                    onUploadProgress={onUploadProgress}
-                                    onUploadStart={onUploadStart}
-                                    style={{ display: 'none' }}
-                                />
-                                <progress className="progress progress-primary w-56" value="40" max="100"></progress>
-                                <div onClick={() => { inputRefTest.current.click() }} className="btn glass ml-2 w-full"> upload </div>
+
+                                <input className='w-36' type="file" onChange={(e) => { setImage(e.target.files[0]) }} />
+
+                                {/* <progress className="progress progress-primary w-56" value="40" max="100"></progress> */}
+                                <div onClick={handleImageUpload} className="btn glass ml-2 w-32">
+                                    {uploadLoading ? <span>Uploading...</span> : <span>Upload</span>}
+                                </div>
                             </div>
                         </div>
-                        <div className='flex flex-nowrap justify-between items-center' >
+                        {/* <div className='flex flex-nowrap justify-between items-center' >
                             <label className=' ' > Instagram: </label>
                             <input type="text" placeholder="Insta userName" className="input input-ghost w-full max-w-xs my-1 "
                                 name='instagram'
@@ -115,9 +113,9 @@ const Modal = ({ openModal, setOpenModal, usn }) => {
                             <input type="text" placeholder="Github userName" className="input input-ghost w-full max-w-xs my-1 "
                                 name='github'
                                 onChange={(e) => { handleChange(e) }} />
-                        </div>
+                        </div> */}
 
-                        <div onClick={handleSubmit} className="btn  ">Submit</div>
+                        {/* <div onClick={handleSubmit} className="btn  ">Submit</div> */}
                     </div>
 
                 </label>

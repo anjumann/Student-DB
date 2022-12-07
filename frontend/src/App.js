@@ -26,7 +26,8 @@ function App() {
         <div className='font-jetbrains bg-light h-full min-h-screen' >
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<PostPage />} />
+            <Route path="/about" element={<Home />} />
             <Route path="/members" element={<Members />} />
             <Route path="/members/undefined" element={<Home />} />
             <Route path="/members/:id" element={<Profile />} />
