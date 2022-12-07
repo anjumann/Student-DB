@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil'
 const Navbar = () => {
     const apiUrl = process.env.REACT_APP_API_URL
     const [authsesstion, setAuthSession] = useRecoilState(sessionAuth);
+    const [trigger, setTrigger] = useState(0)
 
 
     const uid = JSON.parse(localStorage.getItem('uid'))
@@ -16,12 +17,12 @@ const Navbar = () => {
 
     const logout = () => {
         localStorage.removeItem('uid')
-        setAuthSession("User not found")
+        setAuthSession(null)
+        setTrigger(trigger + 1)
     }
 
     const fetchUser = async () => {
         if (uid) {
-
             await axios.request({
                 url: `${apiUrl}/user/uid/${uid}`,
                 method: "GET",
@@ -44,7 +45,7 @@ const Navbar = () => {
         if (!authsesstion) {
             fetchUser()
         }
-    }, [authsesstion])
+    }, [authsesstion,trigger])
 
 
     return (
