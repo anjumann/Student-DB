@@ -61,6 +61,11 @@
   background-attachment: fixed;
 }
 
+.bgProfile{
+  background-image: url("/public/images/register.jpg");
+
+}
+
 .heading-shadow {
   text-shadow: rgb(255 215 77 / 60%) -1px -1px 6px,
     rgb(124 127 255 / 60%) 1px 1px 6px;

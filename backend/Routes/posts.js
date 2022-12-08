@@ -18,7 +18,8 @@ router.get('/all/:usn',getAllPostByUsn )
 router.get('/ppid/:ppid',getPostByPid)
 
 // update post by ppid
-router.put('/update/:ppid',updatePostByPid )
+// router.put('/update/:ppid',updatePostByPid )
+router.put('/update/:usn',updatePostByPid )
 
 
 

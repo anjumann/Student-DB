@@ -22,13 +22,47 @@ const Tab = ({ branch, setBranch, setSection, setSemester, search, setSearch }) 
             icon: <IoWineOutline className={`inline mr-2 text-white ${branch === "ECE" ? 'text-red-500' : 'text-white'}`} />
         },
         {
-            title: 'AIML',
+            title: 'EEE',
+            icon: <GiGlassCelebration className={`inline mr-2 text-white ${branch === "AIML" ? 'text-red-500' : 'text-white'}`} />
+        },
+        {
+            title: 'MECH',
+            icon: <GiGlassCelebration className={`inline mr-2 text-white ${branch === "AIML" ? 'text-red-500' : 'text-white'}`} />
+        },
+        {
+            title: 'CIVIL',
+            icon: <GiGlassCelebration className={`inline mr-2 text-white ${branch === "AIML" ? 'text-red-500' : 'text-white'}`} />
+        },
+        {
+            title: 'MBA',
+            icon: <GiGlassCelebration className={`inline mr-2 text-white ${branch === "AIML" ? 'text-red-500' : 'text-white'}`} />
+        },
+        {
+            title: 'CHEM',
+            icon: <GiGlassCelebration className={`inline mr-2 text-white ${branch === "AIML" ? 'text-red-500' : 'text-white'}`} />
+        },
+        {
+            title: 'MCA',
             icon: <GiGlassCelebration className={`inline mr-2 text-white ${branch === "AIML" ? 'text-red-500' : 'text-white'}`} />
         },
 
     ]
 
+    // ["ISE", "CSE", "ECE", "EEE", "MECH", "CIVIL", "CHEM", "MBA", "MCA"]
 
+    const semesterList = ["1", "2", "3", "4", "5", "6", "7", "8"]
+    const semester = [
+
+        { value: "1" },
+        { value: "2" },
+        { value: "3" },
+        { value: "4" },
+        { value: "5" },
+        { value: "6" },
+        { value: "7" },
+        { value: "8" },
+
+    ]
 
 
     return (
@@ -54,8 +88,15 @@ const Tab = ({ branch, setBranch, setSection, setSemester, search, setSearch }) 
                     onChange={(e) => setSemester(e.target.value)}
                 >
                     <option value={"ALL"} defaultValue>Semster</option>
-                    <option value={"ALL"} >All</option>
-                    <option value={"5th"} >5th</option>
+                    <option value={"1"} defaultValue>1</option>
+                    <option value={"2"} defaultValue>2</option>
+                    <option value={"3"} defaultValue>3</option>
+                    <option value={"4"} defaultValue>4</option>
+                    <option value={"5"} defaultValue>5</option>
+                    <option value={"6"} defaultValue>6</option>
+                    <option value={"7"} defaultValue>7</option>
+                    <option value={"8"} defaultValue>8</option>
+
                 </select>
                 <select className="select select-ghost w-fit text-white mx-auto backdrop-blur-sm"
                     onChange={(e) => setSection(e.target.value)}
@@ -68,15 +109,15 @@ const Tab = ({ branch, setBranch, setSection, setSemester, search, setSearch }) 
                     <option value={"D"} >D</option>
                 </select>
                 <input
-                onChange={(e) => {
-                    setSearch(e.target.value)
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.target.blur()
-                    }
-                  }}
-                type="search" className="w-fit py-2 pl-10 pr-4 border rounded-lg bg-gray-800 text-gray-300 border-gray-600 focus:border-red-400  focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-red-300" placeholder="Search"/>
+                    onChange={(e) => {
+                        setSearch(e.target.value)
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.target.blur()
+                        }
+                    }}
+                    type="search" className="w-fit py-2 pl-10 pr-4 border rounded-lg bg-gray-800 text-gray-300 border-gray-600 focus:border-red-400  focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-red-300" placeholder="Search" />
             </div>
         </>
     )

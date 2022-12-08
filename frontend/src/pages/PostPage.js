@@ -47,7 +47,7 @@ const PostPage = () => {
                     {posts.map((post, key) => {
                         return (
                             <>
-                                <CardPost name={post.name} usn={post.userusn} likes={post.likes} description={post.desc} image={post.image} />
+                                <CardPost key={key} name={post.name} usn={post.userusn} likes={post.likes} description={post.desc} image={post.image} />
                             </>
                         )
                     })}

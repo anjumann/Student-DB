@@ -47,10 +47,10 @@ const DevTeam = () => {
                         </div>
 
 
-                        {/* <div className="flex flex-col items-center p-8 transition-all duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group border-gray-700 my-8 sm:w-11/12 mx-auto lg:w-fit hover:-translate-y-3 hover:scale-110 
+                        <div className="flex flex-col items-center p-8 transition-all duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group border-gray-700 my-8 sm:w-11/12 mx-auto lg:w-fit hover:-translate-y-3 hover:scale-110 
                         hover:shadow-slate-100 hover:shadow-lg 
                         ">
-                            <img className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300 group-hover:shadow-slate-100 group-hover:shadow-lg transition-all duration-150 " src="/images/sky.jpg" alt="" />
+                            <img className="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300 group-hover:shadow-slate-100 group-hover:shadow-lg transition-all duration-150 " src="/images/ayush.jpg" alt="" />
 
                             <h1 className="mt-4 text-2xl font-semibold capitalize  text-white group-hover:text-white heading-shadow">Ayush Ranjan</h1>
 
@@ -69,7 +69,7 @@ const DevTeam = () => {
                                     <FaExternalLinkSquareAlt />
                                 </a>
                             </div>
-                        </div> */}
+                        </div>
 
 
                     </div>S

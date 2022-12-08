@@ -87,7 +87,8 @@ const getPostByPid =  async (req, res) => {
 
 const updatePostByPid = async (req, res) => {
     try {
-        const post = await Post.findOne({ ppid: req.params.ppid })
+        // const post = await Post.findOne({ ppid: req.params.ppid })
+        const post = await Post.findOne({ usn: req.params.usn })
 
         if (post) {
             // res.status(200).json(user.id)

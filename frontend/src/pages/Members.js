@@ -5,10 +5,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { memberDetails } from "../atom/authAtom";
+import pp from '../register.jpg'
 
 
 const Members = () => {
-  
+
   const apiUrl = process.env.REACT_APP_API_URL;
   const [studentData, setMembers] = useRecoilState(memberDetails);
 
@@ -61,7 +62,7 @@ const Members = () => {
 
                 <Link to={`/members/${student.usn}`} key={key}  >
                   <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto group transition-all duration-150 cursor-pointer ">
-                    <div className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md" style={{ backgroundImage: "url(/images/sky.jpg)" }}></div>
+                    <div className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md bgProfile" ></div>
 
                     <div className="w-56 -mt-10 overflow-hidden rounded-2xl shadow-lg md:w-64 bg-none backdrop-blur-sm  ">
                       <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white heading-shadow">{student.name}</h3>

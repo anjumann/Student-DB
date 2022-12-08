@@ -10,6 +10,7 @@ const PostCreateModal = ({ openPostModal, setOpenPostModal, name, usn }) => {
     const [max, setMax] = useState(0)
     const [description, setDescription] = useState(null)
 
+
     const onError = err => {
         console.log("Error", err);
     };
@@ -81,7 +82,8 @@ const PostCreateModal = ({ openPostModal, setOpenPostModal, name, usn }) => {
                                 inputRef={inputRefTest}
                                 onUploadProgress={onUploadProgress}
                                 onUploadStart={onUploadStart}
-                                
+                                onClick={(e) => { e.stopPropagation() }}
+
                             />
                             <div className='flex w-full ' >
                                 <progress className="progress progress-secondary w-full" value={value} max={max}></progress>

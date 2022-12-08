@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import { sessionAuth } from './atom/authAtom'
 import { IKContext } from 'imagekitio-react';
 import PostPage from "./pages/PostPage";
+import Scripts from "./Scripts";
 
 function App() {
   const publickey = process.env.REACT_APP_IMAGE_KIT_URL_PUBLIC_KEY
@@ -34,6 +35,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/explore" element={<PostPage />} />
+            <Route path="/scripts" element={< Scripts />} />
             <Route path="/*" element={<PageNotFound/>} />
           </Routes>
           <Footer />
