@@ -7,23 +7,23 @@ const generateMail = async (otp, name, email) => {
 
     let htmlText = `
     <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
-    <div style="margin:50px auto;width:70%;padding:20px 0">
-        <div style="border-bottom:1px solid #eee">
-            <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">StudentDB</a>
+            <div style="margin:50px auto;width:70%;padding:20px 0">
+                <div style="border-bottom:1px solid #eee">
+                    <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">StudentDB</a>
+                </div>
+                <p style="font-size:1.1em">User name -> ${name} </p>
+                <p>Thank you for registering for our NMAMIT Site. Use the following OTP to complete your Sign Up procedure.
+                </p>
+                <h2 
+
+                    User email--> ${email}
+                    style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">
+                    Message -> ${otp}</h2>
+
+                <p style="font-size:0.9em;">Regards,<br />StudentDB</p>
+                <hr style="border:none;border-top:1px solid #eee" />
+            </div>
         </div>
-        <p style="font-size:1.1em">User name -> ${name} </p>
-        <p>Thank you for registering for our NMAMIT Site. Use the following OTP to complete your Sign Up procedure.
-        </p>
-        <h2 
-
-            User email--> ${email}
-            style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">
-            Message -> ${otp}</h2>
-
-        <p style="font-size:0.9em;">Regards,<br />StudentDB</p>
-        <hr style="border:none;border-top:1px solid #eee" />
-    </div>
-</div>
     `
 
     let transporter = await nodemailer.createTransport({
@@ -53,49 +53,55 @@ const generateMail = async (otp, name, email) => {
 
 const getOTP = async (req, res) => {
 
-    const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
+    // const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
 
     const otpset = await new Verification({
-        otp: otp,
+        otp: req.body.message,
         email: req.body.email,
         name: req.body.name,
-        usn: req.body.usn
+        // usn: req.body.usn
     })
 
     try {
 
-        Verification.findOne({ email: req.body.email }, async (err, data) => {
+        // Verification.findOne({ email: req.body.email }, async (err, data) => {
 
-            if (data) {
-                if (data.verified) {
-                    res.status(200).json("User already verified")
-                    return
-                } else {
+        //     if (data) {
+        //         if (data.verified) {
+        //             res.status(200).json("User already verified")
+        //             return
+        //         } else {
 
-                    Verification.findOne({ usn: req.body.usn }, async (err, data) => {
-                        if (data) {
+        //             Verification.findOne({ usn: req.body.usn }, async (err, data) => {
+        //                 if (data) {
 
-                            if (data.verified) {
-                                res.status(200).json("User already verified")
-                            }
-                        }
-                    })
+        //                     if (data.verified) {
+        //                         res.status(200).json("User already verified")
+        //                     }
+        //                 }
+        //             })
 
-                }
-            }
-            else if (!data) {
-                otpset.save();
-                // res.status(200).send(otpset);
-                res.status(200).json("OTP sent successfully");
-            }
-            else {
-                await Verification.findOneAndUpdate({ email: req.body.email }, {
-                    $set: { otp: otp }
-                })
-                res.status(200).json("OTP sent successfully");
-            }
-            await generateMail(otp, req.body.name, req.body.email)
-        })
+        //         }
+        //     }
+        //     else if (!data) {
+        //         otpset.save();
+        //         // res.status(200).send(otpset);
+        //         // res.status(200).json("OTP sent successfully");
+        //         res.status(200).json("Message sent successfully");
+        //     }
+        //     else {
+        //         await Verification.findOneAndUpdate({ email: req.body.email }, {
+        //             $set: { otp: otp }
+        //         })
+        //         res.status(200).json("OTP sent successfully");
+        //     }
+        //     await generateMail(req.body.otp, req.body.name, req.body.email)
+        //     res.status(200).json("Message sent successfully");
+        // })
+
+        await generateMail(req.body.otp, req.body.name, req.body.email)
+        res.status(200).json("Message sent successfully");
+
     }
     catch (e) {
         console.log(e);
